@@ -24,11 +24,11 @@ class ServerService {
                 return this.errorCheck(response);
             }
             catch(error) {
-                return error;
+                return null;
             }
         })
         .catch((error) => {
-            return error;
+            return null;
         });
     }
 

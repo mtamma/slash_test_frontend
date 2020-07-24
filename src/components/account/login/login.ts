@@ -1,4 +1,5 @@
 import accountService from '@/services/account/account.service'
+import _ from 'lodash';
 
 export default {
     name: 'Login',
@@ -8,7 +9,8 @@ export default {
             loginData: {
                 username: '',
                 password: ''
-            }
+            },
+            errorMessage: ''
         };
     },
     methods: {
@@ -21,12 +23,15 @@ export default {
             const params = this.loginData;
             accountService.login(params)
             .then((result) => {
-                if (result) {
-                    localStorage.login = true;
-                    this.$router.push({
-                        name: 'dashboard'
-                    });
+                const token = _.get(result, 'data.token');
+                if (!token) {
+                    this.errorMessage = _.get(result, 'message', '');
+                    return;
                 }
+                localStorage.login = true;
+                this.$router.push({
+                    name: 'dashboard'
+                });
             })
         }
     }

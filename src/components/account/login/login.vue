@@ -23,7 +23,10 @@
         />
         <p
           class="text-red-500 text-xs italic"
-          v-if="!loginData.password">Please choose a password.</p>
+          v-if="!loginData.password">Please choose a password</p>
+        <p
+          class="text-red-500 text-xs italic"
+          v-if="errorMessage">{{errorMessage}}</p>
       </div>
       <div class="flex items-center justify-between">
         <button

@@ -1,9 +1,9 @@
 import server from '@/services/server/server.service'
 
 class AccountService {
-    login(params) {
-        const url = '/api/login';
-        return server.getHttp(url, params)
+    login(params: object) {
+        const url = '/api/signin';
+        return server.postHttp(url, params)
         .then((response) => {
             return response;
         });
